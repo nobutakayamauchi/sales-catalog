@@ -6,23 +6,30 @@ ROOT = Path(__file__).resolve().parents[1]
 products = json.loads((ROOT / 'data/products.json').read_text(encoding='utf-8'))
 allowed_status = {'draft','for_sale','paused','sold_out','archived'}
 allowed_partner = {'closed','open','limited','invite_only','paused'}
+allowed_commission_type = {'success_fee'}
+allowed_commission_basis = {'confirmed_receipt'}
 
 assert isinstance(products, list) and products, 'products.json must contain products'
 ids = set()
 for p in products:
-    required = {'id','name','type','status','price','currency','summary','canonical_repo','overview_url','sales_url','partner_status'}
+    required = {'id','name','type','status','price','currency','summary','canonical_repo','overview_url','sales_url','affiliate_url','partner_status','commission_type','commission_rate','commission_basis'}
     missing = required - p.keys()
     assert not missing, f"{p.get('id','?')}: missing {sorted(missing)}"
     assert p['id'] not in ids, f"duplicate id: {p['id']}"
     ids.add(p['id'])
     assert p['status'] in allowed_status, f"invalid status: {p['status']}"
     assert p['partner_status'] in allowed_partner, f"invalid partner status: {p['partner_status']}"
+    assert p['commission_type'] in allowed_commission_type, f"invalid commission type: {p['commission_type']}"
+    assert p['commission_basis'] in allowed_commission_basis, f"invalid commission basis: {p['commission_basis']}"
     assert isinstance(p['price'], (int,float)) and p['price'] >= 0
+    assert isinstance(p['commission_rate'], (int,float)) and 0 <= p['commission_rate'] <= 1
     overview = ROOT / p['overview_url'].removeprefix('./')
     sales = ROOT / p['sales_url'].removeprefix('./')
+    affiliate = ROOT / p['affiliate_url'].removeprefix('./')
     if overview.is_dir(): overview = overview / 'index.html'
     assert overview.exists(), f"missing overview: {overview}"
     assert sales.exists(), f"missing sales page: {sales}"
+    assert affiliate.exists(), f"missing affiliate page: {affiliate}"
 
 for html in ROOT.rglob('*.html'):
     text = html.read_text(encoding='utf-8')
