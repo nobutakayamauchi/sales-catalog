@@ -1,0 +1,15 @@
+[
+  {
+    "id": "webai-bridge",
+    "name": "WebAI Bridge",
+    "type": "software",
+    "status": "for_sale",
+    "price": 98000,
+    "currency": "JPY",
+    "summary": "AIをWebで配布し、顧客接点へつなぐための基盤",
+    "canonical_repo": "nobutakayamauchi/WebAI-Bridge",
+    "overview_url": "./products/webai-bridge/",
+    "sales_url": "./products/webai-bridge/sales.html",
+    "partner_status": "open"
+  }
+]
