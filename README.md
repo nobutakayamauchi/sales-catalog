@@ -2,19 +2,22 @@
 
 Public catalog for products explicitly marked for sale.
 
+GitHub Pages: https://nobutakayamauchi.github.io/sales-catalog/
+
 ## Responsibility boundary
 
 `sales-catalog` is **not** a product implementation repository.
 
 - Product implementation and technical truth live in each Canonical Repository.
-- This repository only aggregates sellable products as a two-page set:
+- This repository aggregates sellable products as a three-page public set:
   - Product Overview
   - Sales Landing Page
-- Affiliate, payment, seller management, commission, payout, authentication, backend, marketplace logic, and product runtime do not belong here.
+  - Affiliate Guide
+- Affiliate registration, attribution, payment, seller management, commission settlement, payout, authentication, backend, marketplace logic, and product runtime do not belong here.
 
-## V0
+## Current catalog
 
-V0 publishes WebAI Bridge as the first catalog product and keeps product metadata in `data/products.json`.
+WebAI Bridge is the first catalog product. Product and partner metadata live in `data/products.json`.
 
 ```text
 sales-catalog/
@@ -22,7 +25,8 @@ sales-catalog/
 ├── products/
 │   └── webai-bridge/
 │       ├── index.html
-│       └── sales.html
+│       ├── sales.html
+│       └── affiliate.html
 ├── data/
 │   └── products.json
 └── assets/
