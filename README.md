@@ -1,38 +1,38 @@
 # sales-catalog
 
-Public sales catalog for sellable products.
+Public catalog for products explicitly marked for sale.
 
-## Purpose
+## Responsibility boundary
 
-This repository aggregates products that have been explicitly marked as sellable in their canonical repositories.
+`sales-catalog` is **not** a product implementation repository.
 
-Each product is represented by two public-facing pages:
+- Product implementation and technical truth live in each Canonical Repository.
+- This repository only aggregates sellable products as a two-page set:
+  - Product Overview
+  - Sales Landing Page
+- Affiliate, payment, seller management, commission, payout, authentication, backend, marketplace logic, and product runtime do not belong here.
 
-1. Product Overview
-   - What the product is
-   - Who it is for
-   - Main features
-   - Current status
+## V0
 
-2. Sales Landing Page
-   - Sales copy
-   - Pricing
-   - Offer
-   - CTA
+V0 publishes WebAI Bridge as the first catalog product and keeps product metadata in `data/products.json`.
 
-## Source of Truth
-
-This repository is not the canonical source for product implementation or technical specifications.
-
-Each product's canonical repository remains the source of truth.
-
-Product metadata may be collected from canonical repositories and rendered here for public sales use.
-
-## Initial Structure
-
+```text
 sales-catalog/
 ├── index.html
 ├── products/
+│   └── webai-bridge/
+│       ├── index.html
+│       └── sales.html
 ├── data/
-├── assets/
-└── README.md
+│   └── products.json
+└── assets/
+    ├── css/catalog.css
+    └── js/catalog.js
+```
+
+## Source of truth
+
+If catalog copy conflicts with the Canonical Repository, the Canonical Repository wins.
+
+WebAI Bridge canonical repository:
+https://github.com/nobutakayamauchi/WebAI-Bridge
