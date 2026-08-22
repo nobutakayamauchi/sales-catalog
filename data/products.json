@@ -10,6 +10,10 @@
     "canonical_repo": "nobutakayamauchi/WebAI-Bridge",
     "overview_url": "./products/webai-bridge/",
     "sales_url": "./products/webai-bridge/sales.html",
-    "partner_status": "open"
+    "affiliate_url": "./products/webai-bridge/affiliate.html",
+    "partner_status": "open",
+    "commission_type": "success_fee",
+    "commission_rate": 0.5,
+    "commission_basis": "confirmed_receipt"
   }
 ]
