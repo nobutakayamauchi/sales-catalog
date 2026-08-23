@@ -1,5 +1,36 @@
 [
   {
+    "id": "axis",
+    "name": "AXIS",
+    "type": "service",
+    "status": "for_sale",
+    "price": 10000,
+    "currency": "JPY",
+    "summary": "困っている一点を整理し、最も効く解決策を実装可能な仕様書と見積書にする設計サービス",
+    "canonical_repo": "nobutakayamauchi/limit-development",
+    "overview_url": "./products/axis/",
+    "sales_url": "./products/axis/sales.html",
+    "partner_status": "closed",
+    "commission_type": "none",
+    "commission_rate": 0
+  },
+  {
+    "id": "bridgepatch",
+    "name": "BridgePatch",
+    "type": "service",
+    "status": "for_sale",
+    "price_min": 50000,
+    "price_max": 90000,
+    "currency": "JPY",
+    "summary": "既存の業務やツールを見て、使えるものを組み合わせ、足りない部分だけ作る一点改善サービス",
+    "canonical_repo": "nobutakayamauchi/limit-development",
+    "overview_url": "./products/bridgepatch/",
+    "sales_url": "./products/bridgepatch/sales.html",
+    "partner_status": "closed",
+    "commission_type": "none",
+    "commission_rate": 0
+  },
+  {
     "id": "webai-bridge",
     "name": "WebAI Bridge",
     "type": "software",
