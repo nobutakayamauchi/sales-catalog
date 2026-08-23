@@ -10,9 +10,11 @@
     "canonical_repo": "nobutakayamauchi/limit-development",
     "overview_url": "./products/axis/",
     "sales_url": "./products/axis/sales.html",
-    "partner_status": "closed",
-    "commission_type": "none",
-    "commission_rate": 0
+    "affiliate_url": "./products/axis/affiliate.html",
+    "partner_status": "open",
+    "commission_type": "success_fee",
+    "commission_rate": 0.5,
+    "commission_basis": "confirmed_receipt"
   },
   {
     "id": "bridgepatch",
@@ -26,9 +28,11 @@
     "canonical_repo": "nobutakayamauchi/limit-development",
     "overview_url": "./products/bridgepatch/",
     "sales_url": "./products/bridgepatch/sales.html",
-    "partner_status": "closed",
-    "commission_type": "none",
-    "commission_rate": 0
+    "affiliate_url": "./products/bridgepatch/affiliate.html",
+    "partner_status": "open",
+    "commission_type": "success_fee",
+    "commission_rate": 0.5,
+    "commission_basis": "confirmed_receipt"
   },
   {
     "id": "webai-bridge",
