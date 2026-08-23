@@ -17,11 +17,11 @@ GitHub Pages: https://nobutakayamauchi.github.io/sales-catalog/
 
 ## Current catalog
 
-- AXIS — ¥10,000. Turns a concrete pain point into an implementation-ready specification and estimate.
-- BridgePatch — ¥50,000–¥90,000. Reviews the existing workflow/tools, reuses and connects what already works, and builds only the missing piece.
-- WebAI Bridge — ¥98,000. Web distribution and access-control foundation for AI products.
+- AXIS — ¥10,000 / success fee 50%. Turns a concrete pain point into an implementation-ready specification and estimate.
+- BridgePatch — ¥50,000–¥90,000 / success fee 50%. Reviews the existing workflow/tools, reuses and connects what already works, and builds only the missing piece.
+- WebAI Bridge — ¥98,000 / success fee 50%. Web distribution and access-control foundation for AI products.
 
-Product and partner metadata live in `data/products.json`.
+Product and partner metadata live in `data/products.json`. Commission becomes eligible after confirmed receipt; unconfirmed, refunded, or charged-back sales do not become confirmed commission.
 
 ```text
 sales-catalog/
@@ -29,10 +29,12 @@ sales-catalog/
 ├── products/
 │   ├── axis/
 │   │   ├── index.html
-│   │   └── sales.html
+│   │   ├── sales.html
+│   │   └── affiliate.html
 │   ├── bridgepatch/
 │   │   ├── index.html
-│   │   └── sales.html
+│   │   ├── sales.html
+│   │   └── affiliate.html
 │   └── webai-bridge/
 │       ├── index.html
 │       ├── sales.html
