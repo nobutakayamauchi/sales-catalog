@@ -5,10 +5,17 @@ if(root){
     .then(products=>{
       const live=products.filter(p=>p.status==='for_sale');
       root.innerHTML=live.map(p=>{
-        const commission=Number(p.price)*Number(p.commission_rate||0);
+        const min=Number(p.price_min??p.price??0);
+        const max=Number(p.price_max??p.price??0);
+        const hasRange=min>0&&max>0&&min!==max;
+        const priceLabel=hasRange
+          ?`¥${min.toLocaleString('ja-JP')}〜¥${max.toLocaleString('ja-JP')}`
+          :min>0?`¥${min.toLocaleString('ja-JP')}`:'要見積もり';
+        const commissionBase=Number(p.price||p.price_min||0);
+        const commission=commissionBase*Number(p.commission_rate||0);
         const affiliate=p.partner_status==='open'&&p.affiliate_url?`<a class="btn" href="${encodeURI(p.affiliate_url)}">この商品を紹介する</a>`:'';
         const commissionMeta=p.commission_type==='success_fee'&&p.commission_rate?`<span class="badge">成功報酬 ${Math.round(Number(p.commission_rate)*100)}%</span>`:'';
-        return `<article class="card product-card"><div class="grow"><div class="eyebrow">${escapeHtml(p.type.toUpperCase())} / PRODUCT</div><h3>${escapeHtml(p.name)}</h3><p class="muted">${escapeHtml(p.summary)}</p><div class="meta"><span class="badge">販売中</span>${p.partner_status==='open'?'<span class="badge partner">販売パートナー募集中</span>':''}${commissionMeta}</div><div class="price">¥${Number(p.price).toLocaleString('ja-JP')} <small>${escapeHtml(p.currency)}</small></div>${commission?`<p class="fine">1件の成功報酬目安：¥${commission.toLocaleString('ja-JP')}</p>`:''}</div><div class="actions"><a class="btn" href="${encodeURI(p.overview_url)}">商品を見る</a><a class="btn primary" href="${encodeURI(p.sales_url)}">販売ページを見る</a>${affiliate}</div></article>`;
+        return `<article class="card product-card"><div class="grow"><div class="eyebrow">${escapeHtml(String(p.type||'product').toUpperCase())} / PRODUCT</div><h3>${escapeHtml(p.name)}</h3><p class="muted">${escapeHtml(p.summary)}</p><div class="meta"><span class="badge">販売中</span>${p.partner_status==='open'?'<span class="badge partner">販売パートナー募集中</span>':''}${commissionMeta}</div><div class="price">${priceLabel} <small>${escapeHtml(p.currency||'JPY')}</small></div>${commission?`<p class="fine">1件の成功報酬目安：¥${commission.toLocaleString('ja-JP')}</p>`:''}</div><div class="actions"><a class="btn" href="${encodeURI(p.overview_url)}">商品を見る</a><a class="btn primary" href="${encodeURI(p.sales_url)}">販売ページを見る</a>${affiliate}</div></article>`;
       }).join('');
       if(!live.length)root.innerHTML='<div class="card"><b>現在販売中の商品はありません。</b></div>';
     })
