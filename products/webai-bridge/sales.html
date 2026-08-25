@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>WebAI Bridge | 新しいGPTsをWebで配る</title>
-<meta name="description" content="新しいGPTsを作って公開できない今、AIをWebで配布・販売するための基盤。Knowledgeをサーバ側に保ち、購入者だけに利用権を渡し、推論費は利用者ごとに分離できます。">
+<meta name="description" content="新しいGPTsを作って公開できない今、SkillsかWeb化か。初心者への導入負荷やKnowledge保護、Web化の重い販売基盤をまとめて解決するWebAI Bridge。">
 <link rel="stylesheet" href="../../assets/css/catalog.css">
 <link rel="stylesheet" href="sales.css">
 </head>
@@ -42,10 +42,28 @@
 <main>
 <section id="why">
   <div class="wrap">
-    <div class="section-head"><div class="eyebrow">THE PROBLEM</div><h2>AIは作れる。<br>でも「配って売る」が重い。</h2><p class="section-copy">AI本体ができても、商品として一般のお客さんへ届けるには、そこから別の開発が始まります。</p></div>
-    <div class="big-line"><div class="big-num">01</div><div><h3>新しいGPTを、個人アカウントから新規公開できない。</h3><p>既存GPTは使えても、新しいAI商品を増やす入口としては使えません。新しい配布経路が必要です。</p></div></div>
-    <div class="big-line"><div class="big-num">02</div><div><h3>配布のために、<span class="highlight">中身一式を相手へ渡したくない。</span></h3><p>InstructionsやKnowledgeは商品の中核です。配布先へそのまま渡すのではなく、サーバ側に置いたまま使わせたい。</p></div></div>
-    <div class="big-line"><div class="big-num">03</div><div><h3>Webにすると、今度は販売基盤まで作ることになる。</h3><p>認証、決済、利用権、失効、API、Knowledge保護。URLを置くだけでは「売れるWeb商品」にはなりません。</p></div></div>
+    <div class="section-head">
+      <div class="eyebrow">THE REAL CHOICE</div>
+      <h2>GPTsの次。<br>選択肢は、<span class="highlight">SkillsかWeb化。</span></h2>
+      <p class="section-copy">どちらも選択肢としては正しい。問題は、どちらにも販売者にとって重い弱点があることです。</p>
+    </div>
+
+    <div class="choice">
+      <div class="choice-box">
+        <div class="label">OPTION 01 / SKILLS</div>
+        <h3>Skillsで配る。</h3>
+        <p><strong>作る側には軽い。</strong> ただし「配って使ってほしい相手」との相性が難しい。</p>
+        <p>初心者には導入・設定・定着のハードルが上がりやすく、GPTsのように「リンクを渡せばそのまま使える」体験から遠ざかります。</p>
+        <p>逆に中上級者へSkills一式を渡す場合、Instructions・Knowledge・プログラム構造など、商品の核を相手側へ渡す範囲が大きくなります。解析・コピー・再利用されるリスクも考えなければいけません。</p>
+      </div>
+      <div class="choice-box recommended">
+        <div class="label">OPTION 02 / WEB</div>
+        <h3>Webで配る。</h3>
+        <p><strong>利用者にはこちらの方が自然。</strong> URLから使わせやすく、商品としての入口も作りやすい。</p>
+        <p>ただし販売者側では、AIを1本出すたびに認証、決済、購入者判定、利用権、Knowledge保護、失効、API、運用を考える必要があります。</p>
+        <p>きちんと作って保持しようとすると、AI本体より「売れる状態を維持する基盤」の方が重くなる。これがWeb化の弱点です。</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -53,15 +71,15 @@
   <div class="wrap solution-grid">
     <div class="solution-sticky">
       <span class="pill">THE BRIDGE</span>
-      <h2>だから、<br><span class="cyan">Webで配る。</span></h2>
-      <p class="section-copy">GPTsの「使ってもらいやすさ」と、販売者が守りたいもの。その両方をWeb側でつなぎます。</p>
+      <h2>Webを選ぶ。<br><span class="cyan">重さだけ、潰す。</span></h2>
+      <p class="section-copy">WebAI Bridgeは、Skillsのように中身一式を配布先へ渡さず、Webの使いやすさを残したまま、販売・権限・保護の周辺実装を共通基盤へ寄せるためのものです。</p>
     </div>
     <div class="solution-points">
-      <div class="solution-point"><b>リンクから使える。</b><p>一般の利用者に、複雑な配布作業を要求せずWebを入口にします。</p></div>
+      <div class="solution-point"><b>リンクから使える。</b><p>一般の利用者に、複雑なインストールや設定を前提にせず、Webを入口にします。</p></div>
       <div class="solution-point"><b>購入者だけが使える。</b><p>URLを知っているだけではなく、購入・利用権を持つ人としてアクセスを扱います。</p></div>
-      <div class="solution-point"><b>Knowledgeをそのまま渡さない。</b><p>Instructions / Knowledgeをサーバ側に保持し、利用者へファイル一式として配らない構成を取れます。</p></div>
+      <div class="solution-point"><b>Knowledgeをそのまま渡さない。</b><p>Instructions / Knowledgeをサーバ側に保持し、商品の核をファイル一式として配らない構成を取れます。</p></div>
       <div class="solution-point"><b>売ったあとも止められる。</b><p>返金や権利失効などに応じて、Revocationまで商用チェーンの一部として扱います。</p></div>
-      <div class="solution-point"><b>何本も出す前提で使える。</b><p>AIを出すたびに、認証・決済・権限周りをゼロから作り直す負担を減らします。</p></div>
+      <div class="solution-point"><b>何本も出す前提で使える。</b><p>AIを出すたびに、認証・決済・権限・保護をゼロから作り直す負担を減らします。</p></div>
     </div>
   </div>
 </section>
@@ -129,6 +147,7 @@
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">FAQ</div><h2>よくある確認。</h2></div>
     <div class="faq">
+      <details><summary>Skillsで配ればよくないですか？</summary><p>Skillsも選択肢です。ただし、初心者へ使ってもらう場合は導入・設定の負荷が上がりやすく、逆に中上級者へ一式を渡す場合はInstructions・Knowledge・プログラム構造などの解析・再利用リスクを考える必要があります。WebAI Bridgeは、配布先へ中身一式を渡さずWebを入口にするための選択肢です。</p></details>
       <details><summary>既存のGPTはもう使えないのですか？</summary><p>いいえ。既存GPTは引き続き利用できます。2026年8月現在の大きな変更点は、Free / Go / Plus / Proを含む個人向けChatGPTで、新しいGPTの作成・公開ができないことです。</p></details>
       <details><summary>なぜ利用者にAPIキーを入れてもらうのですか？</summary><p>販売者が全利用者の推論費を負担すると、利用増加や悪用によってコストが急増する可能性があるためです。標準では利用者自身のAPIキーを使い、使った人が使った分を負担する構造にしています。</p></details>
       <details><summary>APIキーを入れなくても使える形にはできますか？</summary><p>販売者側で推論費を負担するモードは構想しています。ただし、不特定多数に開放する場合は利用上限・レート制御・異常利用停止などの安全機能が必要です。実際の要望が強い場合は、安全機能込みで優先開発を検討します。</p></details>
