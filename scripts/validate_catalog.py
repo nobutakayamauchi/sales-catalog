@@ -12,7 +12,7 @@ allowed_commission_basis = {'confirmed_receipt'}
 assert isinstance(products, list) and products, 'products.json must contain products'
 ids = set()
 for p in products:
-    required = {'id','name','type','status','price','currency','summary','canonical_repo','overview_url','sales_url','affiliate_url','partner_status','commission_type','commission_rate','commission_basis'}
+    required = {'id','name','type','status','currency','summary','canonical_repo','overview_url','sales_url','affiliate_url','partner_status','commission_type','commission_rate','commission_basis'}
     missing = required - p.keys()
     assert not missing, f"{p.get('id','?')}: missing {sorted(missing)}"
     assert p['id'] not in ids, f"duplicate id: {p['id']}"
@@ -21,7 +21,12 @@ for p in products:
     assert p['partner_status'] in allowed_partner, f"invalid partner status: {p['partner_status']}"
     assert p['commission_type'] in allowed_commission_type, f"invalid commission type: {p['commission_type']}"
     assert p['commission_basis'] in allowed_commission_basis, f"invalid commission basis: {p['commission_basis']}"
-    assert isinstance(p['price'], (int,float)) and p['price'] >= 0
+    if 'price' in p:
+        assert isinstance(p['price'], (int,float)) and p['price'] >= 0
+    else:
+        assert 'price_min' in p and 'price_max' in p, f"{p['id']}: missing fixed price or price range"
+        assert isinstance(p['price_min'], (int,float)) and p['price_min'] >= 0
+        assert isinstance(p['price_max'], (int,float)) and p['price_max'] >= p['price_min']
     assert isinstance(p['commission_rate'], (int,float)) and 0 <= p['commission_rate'] <= 1
     overview = ROOT / p['overview_url'].removeprefix('./')
     sales = ROOT / p['sales_url'].removeprefix('./')
