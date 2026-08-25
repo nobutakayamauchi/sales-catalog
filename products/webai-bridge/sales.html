@@ -139,7 +139,7 @@
     <div class="env-grid">
       <article class="info-card"><div class="tag">BUYER DEVICE</div><h3>スマホ / Mac / Windows</h3><p>一般的な現行ブラウザが動作する端末を想定しています。基準実機は開発者所有の iPhone 15 Pro / Safari です。</p></article>
       <article class="info-card"><div class="tag">SERVER</div><h3>Linux / Ubuntu 推奨</h3><p>現行Hosted構成ではLinux系サーバーを推奨。SSHターミナルを使った設置・管理を前提にしたRunbookがあります。</p></article>
-      <article class="info-card"><div class="tag">MOBILE REALITY</div><h3>iPhone実機で確認</h3><p>主要商用チェーンは過去の実証revisionでiPhone実機確認済み。その他端末は同等クラス以上を推奨しますが、全機種の動作を保証するものではありません。</p></article>
+      <article class="info-card"><div class="tag">MOBILE REALITY</div><h3>iPhone実機で確認</h3><p>Hosted v1の主要商用チェーンは、最終exact-head RealityでiPhone 15 Pro / Safariを使って実機確認済みです。その他端末は同等クラス以上を推奨しますが、全機種の動作を保証するものではありません。</p></article>
     </div>
   </div>
 </section>
@@ -162,14 +162,14 @@
 
 <section class="light">
   <div class="wrap">
-    <div class="section-head"><div class="eyebrow">CURRENT PROOF</div><h2>「安全です」ではなく、<br>確認できた範囲を出します。</h2><p class="section-copy">過剰主張はしません。公開Canonical Repositoryの現在の証明境界に合わせ、過去の実証revisionで確認できたことと、最新HEADで再検証が必要なことを分けます。</p></div>
+    <div class="section-head"><div class="eyebrow">CURRENT PROOF</div><h2>「安全です」ではなく、<br>確認できた範囲を出します。</h2><p class="section-copy">Hosted v1の主要商用チェーンは、2026年8月20日に最終exact-head Realityを完走しています。後から追加する拡張機能は、このPASSを自動的に引き継がず、機能ごとに別のReality Gateで扱います。</p></div>
     <div class="proof-grid">
-      <div class="proof-item"><b>固定ドメインHTTPS + Stripe <span class="status pass">PROVEN REVISION</span></b><p>過去の固定ドメイン実証revisionでライブ決済チェーンを確認。</p></div>
-      <div class="proof-item"><b>購入者Handoff / Entitlement <span class="status pass">PROVEN REVISION</span></b><p>支払いから購入者利用権への商用チェーンを確認。</p></div>
-      <div class="proof-item"><b>BYOK + Provider Response <span class="status pass">PROVEN REVISION</span></b><p>iPhone購入者側からのBYOK接続とprovider responseを確認。</p></div>
-      <div class="proof-item"><b>Server-owned Knowledge <span class="status pass">PROVEN REVISION</span></b><p>Knowledgeをサーバ側に保持した取得チェーンを確認。</p></div>
-      <div class="proof-item"><b>Revocation <span class="status pass">PROVEN REVISION</span></b><p>失効後に同じ購入者を即時拒否するチェーンを確認。</p></div>
-      <div class="proof-item"><b>Latest exact HEAD <span class="status open">REVALIDATION</span></b><p>最新HEADについては固定ドメイン総合再検証が必要です。</p></div>
+      <div class="proof-item"><b>固定ドメインHTTPS + Stripe <span class="status pass">REALITY PASS</span></b><p>exact-headをOracleへ展開し、ライブ決済を含む固定ドメイン商用チェーンを確認。</p></div>
+      <div class="proof-item"><b>購入者Handoff / Entitlement <span class="status pass">REALITY PASS</span></b><p>実決済から購入者利用権、browser-bound handoffまで実機で確認。</p></div>
+      <div class="proof-item"><b>BYOK + Provider Response <span class="status pass">REALITY PASS</span></b><p>iPhone Safariからの一時BYOK接続とライブprovider responseを確認。</p></div>
+      <div class="proof-item"><b>Server-owned Knowledge <span class="status pass">REALITY PASS</span></b><p>PACKAGE_TEXT Knowledgeをサーバ側に保持し、実利用チェーンで取得を確認。</p></div>
+      <div class="proof-item"><b>Revocation <span class="status pass">REALITY PASS</span></b><p>失効後、同じ購入者の次回利用が即時拒否されることを確認。</p></div>
+      <div class="proof-item"><b>Hosted v1 exact head <span class="status pass">FINAL PASS</span></b><p>実¥500決済・iPhone実機・BYOK・Knowledge・失効まで一連のReality Gateを完走後、PR #30をマージ。</p></div>
     </div>
     <div class="actions"><a class="cta" href="https://github.com/nobutakayamauchi/WebAI-Bridge">Canonical Repositoryで確認する</a></div>
   </div>
@@ -201,7 +201,7 @@
       <details><summary>サーバー環境は何を推奨しますか？</summary><p>現行Hosted構成ではLinux / Ubuntu系環境を推奨しています。SSHターミナルからの設置・管理を前提にしたRunbookがあります。</p></details>
       <details><summary>Skillsで配ればよくないですか？</summary><p>Skillsも選択肢です。ただし、初心者への導入負荷と、中上級者へ一式を渡す場合のKnowledge・構造の解析・再利用リスクがあります。商用で商品の核を守りながら一般利用者へ配るなら、Web化を本命として考えています。</p></details>
       <details><summary>既存のGPTはもう使えないのですか？</summary><p>いいえ。既存GPTは引き続き利用できます。2026年8月現在の変更点は、Free / Go / Plus / Proを含む個人用ChatGPTアカウントで新しいGPTを作成・公開できないことです。</p></details>
-      <details><summary>これは完成済みSaaSですか？</summary><p>Canonical Repositoryの最新状態と証明範囲を正本として扱います。主要商用チェーンは過去の固定ドメイン実証revisionで確認されていますが、最新exact HEADは総合再検証が必要です。generic production completeとは主張していません。</p></details>
+      <details><summary>これは完成済みSaaSですか？</summary><p>Hosted v1としての主要商用チェーンは、最終exact-head Realityで実決済・iPhone Safari・BYOK・Knowledge・Revocationまで実機確認済みです。ただし、すべての将来機能や全端末・全環境までを無条件に保証する意味で「何でも完成済み」とは表現しません。後から追加する機能は別スコープとして個別に検証します。</p></details>
     </div>
   </div>
 </section>
