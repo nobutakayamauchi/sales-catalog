@@ -50,5 +50,26 @@
     "commission_type": "success_fee",
     "commission_rate": 0.5,
     "commission_basis": "confirmed_receipt"
+  },
+  {
+    "id": "llm-cost-router",
+    "name": "LLM Cost Router — Research Edition",
+    "type": "software",
+    "status": "launch_ready",
+    "price": 10000,
+    "business_price": 49800,
+    "currency": "JPY",
+    "summary": "AIコーディングエージェントのContext、Retry、Reasoning、Computeなどの浪費を観測し、Accepted Resultあたりの効率改善を狙うResearch Runtime。Personal ¥10,000 / Business ¥49,800から開始。",
+    "canonical_repo": "nobutakayamauchi/LLM-Cost-Router",
+    "overview_url": "./products/llm-cost-router/",
+    "sales_url": "./products/llm-cost-router/sales.html",
+    "affiliate_url": "./products/llm-cost-router/affiliate.html",
+    "personal_payment_url": "https://buy.stripe.com/6oUdRbfm8bXDcuqas33Nm0k",
+    "business_payment_url": "https://buy.stripe.com/6oU3cx7TG6DjeCy2ZB3Nm0l",
+    "partner_status": "open",
+    "commission_type": "success_fee",
+    "commission_rate": 0.5,
+    "commission_basis": "confirmed_receipt",
+    "launch_gate": "runtime_and_benchmark_release_approval"
   }
 ]
