@@ -7,6 +7,7 @@ on:
       - '.github/workflows/apply-funnel-tracker.yml'
       - 'scripts/apply_funnel_tracker.py'
       - 'assets/js/funnel-tracker.js'
+      - 'assets/js/x-pixel-base.js'
 
 permissions:
   contents: write
@@ -38,6 +39,6 @@ jobs:
           git add products/webai-bridge/sales.html \
                   products/webai-bridge/contact-complete.html \
                   products/webai-bridge/purchase-complete.html
-          git commit -m 'Wire WebAI Bridge sales funnel tracker'
+          git commit -m 'Wire WebAI Bridge sales funnel tracker and X Pixel'
           git push
           gh workflow run catalog.yml --ref main
