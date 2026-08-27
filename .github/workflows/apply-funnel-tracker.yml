@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   patch:
@@ -24,7 +25,9 @@ jobs:
       - name: Apply tracker injection
         run: python scripts/apply_funnel_tracker.py
 
-      - name: Commit generated HTML patch
+      - name: Commit generated HTML patch and redeploy Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if git diff --quiet; then
             echo 'No changes needed.'
@@ -37,3 +40,4 @@ jobs:
                   products/webai-bridge/purchase-complete.html
           git commit -m 'Wire WebAI Bridge sales funnel tracker'
           git push
+          gh workflow run catalog.yml --ref main
