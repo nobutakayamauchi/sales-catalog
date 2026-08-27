@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Operator Device ID | WebAI Bridge</title>
+<link rel="stylesheet" href="../../assets/css/catalog.css">
+<link rel="stylesheet" href="sales.css">
+</head>
+<body class="wab-sales">
+<main>
+<section class="light" style="min-height:100svh;display:flex;align-items:center">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">LOCAL AUDIT EXCLUSION</div>
+      <h2>この端末の匿名ID</h2>
+      <p class="section-copy">広告監査で自分のアクセスを母数から外すための匿名端末IDです。端末情報・電話番号・Apple IDは取得しません。</p>
+    </div>
+    <div class="choice-box recommended">
+      <div class="label">DEVICE ID</div>
+      <p id="device-id" style="word-break:break-all;font-family:ui-monospace,monospace;font-size:1.05rem">生成中...</p>
+      <div class="actions"><button id="copy-id" class="cta primary" type="button">IDをコピー</button></div>
+      <p id="status" class="section-copy" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+(() => {
+  const key = 'wab_funnel_device_id_v1';
+  const randomId = () => {
+    if (crypto && crypto.randomUUID) return crypto.randomUUID();
+    const a = new Uint8Array(16); crypto.getRandomValues(a);
+    return Array.from(a, b => b.toString(16).padStart(2, '0')).join('');
+  };
+  let id = localStorage.getItem(key);
+  if (!id) { id = randomId(); localStorage.setItem(key, id); }
+  document.getElementById('device-id').textContent = id;
+  document.getElementById('copy-id').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(id);
+      document.getElementById('status').textContent = 'コピーしました。';
+    } catch (_) {
+      document.getElementById('status').textContent = '長押ししてIDをコピーしてください。';
+    }
+  });
+})();
+</script>
+</body>
+</html>
