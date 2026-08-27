@@ -12,6 +12,7 @@
   const SESSION_KEY = 'wab_funnel_session_id_v1';
   const PAGE_SENT_PREFIX = 'wab_funnel_page_sent_v1:';
   const INTENT_KEY = 'wab_funnel_checkout_intent_v1';
+  const CLIENT_REFERENCE_PREFIX = 'wab_';
   const CONSULT_URL = 'https://book.stripe.com/3cI28t3DqaTz6620Rt3Nm0n';
   const PURCHASE_URL = 'https://buy.stripe.com/4gMcN71vi1iZ2TQ7fR3Nm0m';
 
@@ -42,7 +43,41 @@
 
   const deviceId = getOrCreate(localStorage, DEVICE_KEY);
   const sessionId = getOrCreate(sessionStorage, SESSION_KEY);
+  const clientReferenceId = `${CLIENT_REFERENCE_PREFIX}${sessionId}`;
   const params = new URLSearchParams(location.search);
+
+  function sameCheckoutBase(href, base) {
+    try {
+      const a = new URL(href, location.href);
+      const b = new URL(base);
+      return a.origin === b.origin && a.pathname === b.pathname;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function checkoutKind(href) {
+    if (sameCheckoutBase(href, CONSULT_URL)) return 'consult';
+    if (sameCheckoutBase(href, PURCHASE_URL)) return 'purchase';
+    return '';
+  }
+
+  function decorateCheckoutHref(href) {
+    try {
+      const url = new URL(href, location.href);
+      url.searchParams.set('client_reference_id', clientReferenceId);
+      return url.toString();
+    } catch (_) {
+      return href;
+    }
+  }
+
+  function decorateCheckoutLinks() {
+    document.querySelectorAll('a[href]').forEach(link => {
+      if (!checkoutKind(link.href)) return;
+      link.href = decorateCheckoutHref(link.href);
+    });
+  }
 
   function referrerHost() {
     try {
@@ -192,7 +227,7 @@
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         const link = entry.target;
-        const kind = link.href === CONSULT_URL ? 'consult' : link.href === PURCHASE_URL ? 'purchase' : '';
+        const kind = checkoutKind(link.href);
         if (!kind || seen.has(kind)) continue;
         seen.add(kind);
         sendPageOnce(`${kind}_cta_view`);
@@ -201,7 +236,7 @@
     }, { threshold: 0.6 });
 
     document.querySelectorAll('a[href]').forEach(link => {
-      if (link.href === CONSULT_URL || link.href === PURCHASE_URL) observer.observe(link);
+      if (checkoutKind(link.href)) observer.observe(link);
     });
   }
 
@@ -277,13 +312,15 @@
   document.addEventListener('click', event => {
     const link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
-    const href = link.href;
-    if (href === CONSULT_URL) {
+    const kind = checkoutKind(link.href);
+    if (!kind) return;
+    link.href = decorateCheckoutHref(link.href);
+    if (kind === 'consult') {
       setCheckoutIntent('consult');
       send('consult_click');
       send('consult_checkout_start');
     }
-    if (href === PURCHASE_URL) {
+    if (kind === 'purchase') {
       setCheckoutIntent('purchase');
       send('purchase_click');
       send('purchase_checkout_start');
@@ -293,12 +330,14 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       installConversionGuard();
+      decorateCheckoutLinks();
       trackCtaExposure();
       trackScrollDepth();
       detectCheckoutReturn();
     }, { once: true });
   } else {
     installConversionGuard();
+    decorateCheckoutLinks();
     trackCtaExposure();
     trackScrollDepth();
     detectCheckoutReturn();
