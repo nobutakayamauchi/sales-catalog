@@ -8,23 +8,35 @@ FILES = [
     Path("products/webai-bridge/purchase-complete.html"),
 ]
 
-TAG = (
+PIXEL_TAG = '<script src="../../assets/js/x-pixel-base.js"></script>'
+FUNNEL_TAG = (
     '<script src="../../assets/js/funnel-tracker.js" '
     'data-endpoint="https://webai.140-238-62-74.sslip.io/funnel/v1/events" '
     'data-product="webai-bridge" defer></script>'
 )
 
 
+def _inject_once(text: str, tag: str, marker: str, path: Path) -> tuple[str, bool]:
+    if tag in text:
+        return text, False
+    if text.count(marker) != 1:
+        raise RuntimeError(f"expected exactly one {marker} in {path}")
+    return text.replace(marker, f"{tag}\n{marker}"), True
+
+
 def patch(path: Path) -> bool:
     text = path.read_text(encoding="utf-8")
-    if TAG in text:
-        return False
-    marker = "</body>"
-    if text.count(marker) != 1:
-        raise RuntimeError(f"expected exactly one </body> in {path}")
-    text = text.replace(marker, f"{TAG}\n{marker}")
-    path.write_text(text, encoding="utf-8")
-    return True
+    changed = False
+
+    text, pixel_changed = _inject_once(text, PIXEL_TAG, "</head>", path)
+    changed = changed or pixel_changed
+
+    text, funnel_changed = _inject_once(text, FUNNEL_TAG, "</body>", path)
+    changed = changed or funnel_changed
+
+    if changed:
+        path.write_text(text, encoding="utf-8")
+    return changed
 
 
 def main() -> None:
