@@ -20,6 +20,7 @@ GitHub Pages: https://nobutakayamauchi.github.io/sales-catalog/
 - AXIS — ¥10,000 / success fee 50%. Turns a concrete pain point into an implementation-ready specification and estimate.
 - BridgePatch — ¥50,000–¥90,000 / success fee 50%. Reviews the existing workflow/tools, reuses and connects what already works, and builds only the missing piece.
 - WebAI Bridge — ¥98,000 / success fee 50%. Web distribution and access-control foundation for AI products.
+- Sales Distribution Network (SDN) — price by inquiry. Turns Stripe checkout flows into bounded affiliate distribution with referral attribution, commissions, payouts, refunds, and reversals. Public product surface is live while the V1 implementation source remains private.
 
 Product and partner metadata live in `data/products.json`. Commission becomes eligible after confirmed receipt; unconfirmed, refunded, or charged-back sales do not become confirmed commission.
 
@@ -35,10 +36,12 @@ sales-catalog/
 │   │   ├── index.html
 │   │   ├── sales.html
 │   │   └── affiliate.html
-│   └── webai-bridge/
-│       ├── index.html
-│       ├── sales.html
-│       └── affiliate.html
+│   ├── webai-bridge/
+│   │   ├── index.html
+│   │   ├── sales.html
+│   │   └── affiliate.html
+│   └── sdn/
+│       └── index.html
 ├── data/
 │   └── products.json
 └── assets/
@@ -52,3 +55,4 @@ If catalog copy conflicts with a Canonical Repository or published source-of-tru
 
 - AXIS / BridgePatch: `nobutakayamauchi/limit-development`
 - WebAI Bridge: `nobutakayamauchi/WebAI-Bridge`
+- SDN: `nobutakayamauchi/Sales-Distribution-Network` (private during the current V1 build)
