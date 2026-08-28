@@ -22,11 +22,17 @@
     window.__WEBUI_X_PIXEL_REOQZ_CONFIGURED__ = true;
   }
 
-  if (selfScript && !document.querySelector('script[data-sales-contact-hub]')) {
+  const loadContactHub = () => {
+    if (!selfScript || document.querySelector('script[data-sales-contact-hub]')) return;
     const contact = document.createElement('script');
     contact.src = new URL('contact-hub.js', selfScript.src).href;
-    contact.defer = true;
     contact.dataset.salesContactHub = '1';
-    document.head.appendChild(contact);
+    document.body.appendChild(contact);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadContactHub, { once: true });
+  } else {
+    loadContactHub();
   }
 })();
