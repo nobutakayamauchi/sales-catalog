@@ -50,5 +50,22 @@
     "commission_type": "success_fee",
     "commission_rate": 0.5,
     "commission_basis": "confirmed_receipt"
+  },
+  {
+    "id": "sdn",
+    "name": "Sales Distribution Network (SDN)",
+    "type": "software",
+    "status": "for_sale",
+    "price": 0,
+    "currency": "JPY",
+    "summary": "Stripe Checkoutを紹介販売ネットワークへつなぎ、紹介計測・コミッション・支払い・返金リバーサルまでを一つの流れで扱う販売基盤",
+    "canonical_repo": "nobutakayamauchi/Sales-Distribution-Network",
+    "overview_url": "./products/sdn/",
+    "sales_url": "./products/sdn/",
+    "affiliate_url": "",
+    "partner_status": "closed",
+    "commission_type": "",
+    "commission_rate": 0,
+    "commission_basis": ""
   }
 ]
