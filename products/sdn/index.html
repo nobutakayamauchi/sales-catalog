@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SDN | Turn any Stripe checkout into an affiliate sales network</title>
+<meta name="description" content="Sales Distribution Network (SDN) connects Stripe checkout flows to referral attribution, commissions, payouts, refunds, and reversals.">
+<meta property="og:title" content="SDN — Turn any Stripe checkout into an affiliate sales network">
+<meta property="og:description" content="Referral attribution, commissions, payouts, refunds, and reversals in one bounded sales flow.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SDN — Turn any Stripe checkout into an affiliate sales network">
+<meta name="twitter:description" content="Referral attribution, commissions, payouts, refunds, and reversals in one bounded sales flow.">
+<link rel="stylesheet" href="../../assets/css/catalog.css">
+<style>
+  .sdn-hero{background:radial-gradient(circle at 82% 14%,rgba(20,99,255,.18),transparent 31%),linear-gradient(180deg,#fff,var(--bg))}
+  .sdn-hero h1{max-width:980px}
+  .sdn-hero .lead{max-width:930px}
+  .flowline{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:24px}
+  .flowstep{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 12px;text-align:center;font-weight:900;box-shadow:var(--shadow)}
+  .flowstep small{display:block;color:var(--muted);font-weight:700;margin-top:4px}
+  .reversal{margin-top:12px;padding:18px;border-radius:16px;border:1px solid #bfd5ff;background:var(--soft);font-weight:900}
+  .bigline{font-size:clamp(26px,5vw,48px);line-height:1.1;letter-spacing:-.04em;font-weight:950;margin:0}
+  @media(max-width:820px){.flowline{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.flowline{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap navin"><a class="brand" href="../../"><span>◇</span> SALES CATALOG</a><div class="navlinks"><a href="#flow">How it works</a><a class="primary" href="#status">V1 status</a></div></div></nav>
+
+<header class="hero sdn-hero">
+  <div class="wrap">
+    <div class="eyebrow">SALES DISTRIBUTION NETWORK / SDN</div>
+    <h1>Turn any Stripe checkout into an affiliate sales network.</h1>
+    <p class="lead">Commissions, payouts, refunds, and reversals included.</p>
+    <p class="sub">SDN is a bounded sales-distribution layer for Stripe sellers: route buyers through referral links or tokens, attribute the sale, calculate commission, and keep settlement aligned when money moves forward or backward.</p>
+    <div class="statusline"><span class="badge">V1 BUILD NOW</span><span class="badge">STRIPE CHECKOUT</span><span class="badge partner">AFFILIATE DISTRIBUTION</span><span class="badge">PRIVATE CORE</span></div>
+    <div class="actions"><a class="btn primary" href="#flow">See the flow</a><a class="btn" href="../../">View Sales Catalog</a></div>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="sectionhead"><div class="eyebrow">THE IDEA</div><h2>Your checkout should not be the end of the sales system.</h2><p class="muted">A product can already accept payment and still be hard to distribute. SDN adds the bounded layer around the checkout that turns referrals into attributable sales and attributable sales into settlement.</p></div>
+    <div class="grid3">
+      <article class="card"><h3>Referral attribution</h3><p class="muted">Give a referrer a link or token and preserve who brought the buyer into the Stripe checkout flow.</p></article>
+      <article class="card"><h3>Commission + payout</h3><p class="muted">Turn an eligible referred sale into a commission record and carry it through the payout lifecycle.</p></article>
+      <article class="card"><h3>Refund + reversal</h3><p class="muted">When the underlying payment is refunded, keep the affiliate-side settlement state aligned instead of leaving stale commission behind.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap">
+    <div class="sectionhead"><div class="eyebrow">ONE SALES FLOW</div><h2>Referral → money → settlement.</h2><p class="muted">V1 is intentionally narrow: prove the complete commercial chain before expanding the network.</p></div>
+    <div class="flowline">
+      <div class="flowstep">1. Refer<small>link / token</small></div>
+      <div class="flowstep">2. Checkout<small>Stripe</small></div>
+      <div class="flowstep">3. Pay<small>real payment event</small></div>
+      <div class="flowstep">4. Fulfill<small>seller-side result</small></div>
+      <div class="flowstep">5. Commission<small>attributed sale</small></div>
+      <div class="flowstep">6. Payout<small>settlement lifecycle</small></div>
+    </div>
+    <div class="reversal">Refund path: payment refund → commission revocation / reversal → settlement state corrected.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="grid2">
+      <article class="card"><div class="eyebrow">FOR SELLERS</div><h2>Already selling with Stripe?</h2><p class="muted">SDN is aimed at sellers who want other people to distribute their product without rebuilding referral attribution, commission state, payout state, and refund corrections as separate systems.</p></article>
+      <article class="card dark"><div class="eyebrow">BOUNDARY FIRST</div><h2>Build the real chain first.</h2><p>V1 is focused on one product, affiliate distribution, and real settlement. Broader product-owner and network-to-network capabilities stay outside V1 until real demand requires them.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="status">
+  <div class="wrap">
+    <div class="notice">
+      <div class="eyebrow">CURRENT STATUS</div>
+      <h2>V1 is being built and validated now.</h2>
+      <p>The implementation repository is private during the current V1 build. This public page is the product surface, not the technical source of truth. Public self-service signup is not exposed here yet.</p>
+      <p class="bigline">If the one-line pitch brought you here, this is SDN.</p>
+      <div class="actions"><a class="btn primary" href="../../">Back to Sales Catalog</a><a class="btn" href="https://github.com/nobutakayamauchi">Builder on GitHub</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>Sales Distribution Network / SDN</span><a href="../../">SALES CATALOG</a></div></footer>
+</body>
+</html>
