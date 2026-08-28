@@ -64,8 +64,8 @@
     "sales_url": "./products/sdn/",
     "affiliate_url": "",
     "partner_status": "closed",
-    "commission_type": "",
+    "commission_type": "success_fee",
     "commission_rate": 0,
-    "commission_basis": ""
+    "commission_basis": "confirmed_receipt"
   }
 ]
