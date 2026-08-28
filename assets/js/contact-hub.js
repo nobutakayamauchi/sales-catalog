@@ -1,5 +1,6 @@
 (() => {
   const TARGET_EMAIL = 'yamauchi.rts.office@gmail.com';
+  const LEGACY_CONSULT_PATH = 'https://book.stripe.com/3cI28t3DqaTz6620Rt3Nm0n';
 
   const productFromPath = () => {
     const p = location.pathname.toLowerCase();
@@ -67,7 +68,7 @@
     @media(max-width:680px){
       .sch-launcher{left:12px;right:12px;bottom:10px;width:auto;grid-template-columns:1fr 1fr}
       .sch-launcher button{padding:10px 11px}
-      .sch-launcher button:nth-child(3),.sch-launcher button:nth-child(4){display:none}
+      .sch-launcher button:nth-child(2),.sch-launcher button:nth-child(4){display:none}
       .sch-row,.sch-choices{grid-template-columns:1fr}
       .sch-modal{border-radius:20px}
       .sch-head,.sch-body{padding-left:18px;padding-right:18px}
@@ -168,6 +169,25 @@
     document.documentElement.style.overflow = '';
   };
 
+  const isLegacyConsult = (link) => {
+    try {
+      const a = new URL(link.href, location.href);
+      const b = new URL(LEGACY_CONSULT_PATH);
+      return a.origin === b.origin && a.pathname === b.pathname;
+    } catch (_) { return false; }
+  };
+
+  const legacyCategory = (link) => {
+    if (isLegacyConsult(link)) return 'info';
+    try {
+      const u = new URL(link.href, location.href);
+      if (u.hostname === 'x.com' && u.pathname.toLowerCase() === '/ultimate28') {
+        return /partner|パートナー|紹介/.test(link.textContent || '') ? 'other' : 'info';
+      }
+    } catch (_) {}
+    return '';
+  };
+
   document.addEventListener('click', (e) => {
     const opener = e.target.closest('[data-sch-open],[data-contact-hub-open]');
     if (opener) {
@@ -176,7 +196,18 @@
       return;
     }
     const category = e.target.closest('[data-sch-category]');
-    if (category) setCategory(category.dataset.schCategory);
+    if (category) {
+      setCategory(category.dataset.schCategory);
+      return;
+    }
+    const link = e.target.closest('a[href]');
+    if (link) {
+      const legacy = legacyCategory(link);
+      if (legacy) {
+        e.preventDefault();
+        open(legacy);
+      }
+    }
   });
 
   backdrop.querySelector('.sch-close').addEventListener('click', close);
