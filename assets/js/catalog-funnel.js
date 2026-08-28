@@ -4,6 +4,14 @@
   const script = document.currentScript;
   if (!script) return;
 
+  if (!document.querySelector('script[data-sales-contact-hub]')) {
+    const contact = document.createElement('script');
+    contact.src = new URL('contact-hub.js', script.src).href;
+    contact.defer = true;
+    contact.dataset.salesContactHub = '1';
+    document.head.appendChild(contact);
+  }
+
   const endpoint = (script.dataset.endpoint || '').trim();
   const product = (script.dataset.product || '').trim();
   if (!endpoint || !product) return;
