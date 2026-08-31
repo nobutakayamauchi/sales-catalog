@@ -85,5 +85,21 @@
     "commission_type": "success_fee",
     "commission_rate": 0,
     "commission_basis": "confirmed_receipt"
+  },
+  {
+    "id": "ai-cm-render",
+    "name": "AI CM Render",
+    "type": "software",
+    "status": "preparing",
+    "currency": "JPY",
+    "summary": "静止画素材から縦型SNS広告動画を構成し、構図に合わせた動き・字幕・BGM・SE・最終MP4出力までを一気通貫で行うAI広告動画生成セット",
+    "canonical_repo": "nobutakayamauchi/render-worker",
+    "overview_url": "",
+    "sales_url": "",
+    "affiliate_url": "",
+    "partner_status": "closed",
+    "commission_type": "success_fee",
+    "commission_rate": 0,
+    "commission_basis": "confirmed_receipt"
   }
 ]
