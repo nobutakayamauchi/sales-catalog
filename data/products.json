@@ -1,5 +1,23 @@
 [
   {
+    "id": "invoice-payment-ops",
+    "name": "Invoice Payment Ops",
+    "type": "software",
+    "status": "for_sale",
+    "price_min": 5000,
+    "price_max": 30000,
+    "currency": "JPY",
+    "summary": "見積・納品・請求・入金確認・領収書までを取引IDでつなぎ、ChatGPT / Codexから扱う請求・入金管理セット",
+    "canonical_repo": "nobutakayamauchi/invoice-payment-ops",
+    "overview_url": "./products/invoice-payment-ops/",
+    "sales_url": "./products/invoice-payment-ops/sales.html",
+    "affiliate_url": "./products/invoice-payment-ops/affiliate.html",
+    "partner_status": "closed",
+    "commission_type": "success_fee",
+    "commission_rate": 0,
+    "commission_basis": "confirmed_receipt"
+  },
+  {
     "id": "axis",
     "name": "AXIS",
     "type": "service",
