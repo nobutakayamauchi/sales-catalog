@@ -15,11 +15,19 @@ GitHub Pages: https://nobutakayamauchi.github.io/sales-catalog/
   - Affiliate Guide when partner sales are enabled
 - Affiliate registration, attribution, payment, seller management, commission settlement, payout, authentication, backend, marketplace logic, and product runtime do not belong here.
 
+## LP management
+
+Public sales surfaces are managed as one bundle rather than as unrelated HTML files.
+
+See [`LP_MANAGEMENT.md`](LP_MANAGEMENT.md) for source hierarchy, cross-file sync rules, pricing updates, provider/support wording, and affiliate discipline.
+
+`data/products.json` is the catalog metadata registry. Each `products/<product-id>/` directory owns the public LP bundle for that product.
+
 ## Current catalog
 
 - AXIS — ¥10,000 / success fee 50%. Turns a concrete pain point into an implementation-ready specification and estimate.
 - BridgePatch — ¥50,000–¥90,000 / success fee 50%. Reviews the existing workflow/tools, reuses and connects what already works, and builds only the missing piece.
-- WebAI Bridge — ¥98,000 / success fee 50%. Web distribution and access-control foundation for AI products.
+- WebAI Bridge — ¥98,000 / success fee 50%. Lets creators own a distributable Web AI box, Knowledge, entitlement, BYOK boundary, sales route, and customer connection. Current public edition is ChatGPT / OpenAI compatible.
 - Sales Distribution Network (SDN) — price by inquiry. Turns Stripe checkout flows into bounded affiliate distribution with referral attribution, commissions, payouts, refunds, and reversals. Public product surface is live while the V1 implementation source remains private.
 
 Product and partner metadata live in `data/products.json`. Commission becomes eligible after confirmed receipt; unconfirmed, refunded, or charged-back sales do not become confirmed commission.
@@ -27,6 +35,7 @@ Product and partner metadata live in `data/products.json`. Commission becomes el
 ```text
 sales-catalog/
 ├── index.html
+├── LP_MANAGEMENT.md
 ├── products/
 │   ├── axis/
 │   │   ├── index.html
