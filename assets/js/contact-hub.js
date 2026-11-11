@@ -1,9 +1,12 @@
 (() => {
+  if (window.SalesContactHub) return;
   const TARGET_EMAIL = 'yamauchi.rts.office@gmail.com';
   const LEGACY_CONSULT_PATH = 'https://book.stripe.com/3cI28t3DqaTz6620Rt3Nm0n';
 
   const productFromPath = () => {
     const p = location.pathname.toLowerCase();
+    if (p.includes('/products/invoice-payment-ops/')) return 'Invoice Payment Ops';
+    if (p.includes('/products/ai-cm-render/')) return 'AI CM Render';
     if (p.includes('/products/axis/')) return 'AXIS';
     if (p.includes('/products/bridgepatch/')) return 'BridgePatch';
     if (p.includes('/products/webai-bridge/')) return 'WebAI Bridge';
@@ -106,7 +109,7 @@
         </div>
         <form class="sch-form">
           <div class="sch-row">
-            <div class="sch-field"><label for="sch-product">商品</label><select id="sch-product" name="product"><option>AXIS</option><option>BridgePatch</option><option>WebAI Bridge</option><option>Sales Distribution Network (SDN)</option><option>Sales Catalog / Other</option></select></div>
+            <div class="sch-field"><label for="sch-product">商品</label><select id="sch-product" name="product"><option>Invoice Payment Ops</option><option>AI CM Render</option><option>AXIS</option><option>BridgePatch</option><option>WebAI Bridge</option><option>Sales Distribution Network (SDN)</option><option>Sales Catalog / Other</option></select></div>
             <div class="sch-field"><label for="sch-email">返信先メールアドレス</label><input id="sch-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
           </div>
           <div class="sch-row">
@@ -114,8 +117,10 @@
             <div class="sch-field" id="sch-order-wrap" hidden><label for="sch-order">購入時メール / 注文の手がかり</label><input id="sch-order" name="order" placeholder="任意。Stripe購入時メールなど"></div>
           </div>
           <div class="sch-field"><label for="sch-message" id="sch-message-label">欲しいもの・要望</label><textarea id="sch-message" name="message" required></textarea></div>
-          <p class="sch-note">送信するとメールアプリが開きます。内容を確認して送信してください。APIキー、パスワード、秘密鍵などの秘密情報は書かないでください。</p>
-          <button class="sch-submit" type="submit">この内容をメールで送る</button>
+          <p class="sch-note">ボタンでメール作成画面を開きます。このページからは送信されません。メールアプリで内容を確認して送信してください。APIキー、パスワード、秘密鍵などの秘密情報は書かないでください。</p>
+          <p class="sch-note">宛先：<a href="mailto:${TARGET_EMAIL}">${TARGET_EMAIL}</a></p>
+          <button class="sch-submit" type="submit">メール作成画面を開く</button>
+          <div class="sch-field" id="sch-fallback-wrap" hidden><label for="sch-fallback">メールが開かない場合は、以下をコピーして上記宛先へ送信してください。</label><textarea id="sch-fallback" readonly></textarea></div>
           <div class="sch-status" aria-live="polite"></div>
         </form>
       </div>
@@ -136,6 +141,8 @@
   const kicker = backdrop.querySelector('#sch-kicker');
   const title = backdrop.querySelector('#sch-title');
   const status = backdrop.querySelector('.sch-status');
+  const fallback = backdrop.querySelector('#sch-fallback');
+  const fallbackWrap = backdrop.querySelector('#sch-fallback-wrap');
   let current = 'need';
 
   const selectCurrentProduct = () => {
@@ -159,6 +166,8 @@
     selectCurrentProduct();
     setCategory(key);
     status.textContent = '';
+    fallback.value = '';
+    fallbackWrap.hidden = true;
     backdrop.classList.add('is-open');
     document.documentElement.style.overflow = 'hidden';
     setTimeout(() => message.focus(), 30);
@@ -237,11 +246,18 @@
     ].filter(v => v !== null).join('\n');
 
     const mailto = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(body);
-    } catch (_) {}
-    status.textContent = 'メールアプリを開きます。開かない場合は、入力内容はクリップボードにもコピーされています。';
+    fallback.value = `To: ${TARGET_EMAIL}\nSubject: ${subject}\n\n${body}`;
+    fallbackWrap.hidden = false;
+    status.textContent = 'メール作成画面を開きます。まだ送信されていません。開かない場合は、下の内容をコピーしてください。';
     window.location.href = mailto;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(fallback.value);
+        status.textContent = '内容をクリップボードへコピーしました。メールアプリで確認して送信してください。';
+      }
+    } catch (_) {
+      status.textContent = '自動コピーはできませんでした。まだ送信されていません。下の内容を手動でコピーできます。';
+    }
   });
 
   window.SalesContactHub = { open, close };

@@ -1,6 +1,6 @@
 # LP Management
 
-This repository is the public sales-surface registry for sellable products.
+This repository is the public sales-surface registry for products for sale and clearly labeled consultation listings.
 
 The goal of this file is to stop landing-page copy, pricing, affiliate wording, and product positioning from drifting across scattered files.
 
@@ -97,3 +97,11 @@ Partners should be sent to `sales.html` for the customer-facing offer. Technical
 The catalog already centralizes public product pages. The remaining failure mode is semantic drift: one page says one price, another says another; one page calls a feature current while another calls it planned; one partner page over-promises something the runtime does not support.
 
 Treat the LP bundle and `data/products.json` as one managed sales artifact, not as unrelated HTML files.
+
+## Readiness and checkout
+
+- `for_sale`: existing service offer; scope is agreed through inquiry.
+- `consultation_required`: price is listed, but delivery and commercial terms must be confirmed before purchase.
+- `consultation_only`: development-stage inquiry; a reference price is not a released-product offer.
+- Keep catalog labels, all LPs, partner summaries, and dynamically inserted mobile CTAs aligned.
+- Do not restore direct checkout until the actual deliverable, applicable commercial disclosures, and purchase conditions have been verified. Do not reuse the Brain draft as Stripe terms.

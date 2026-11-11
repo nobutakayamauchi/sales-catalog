@@ -25,6 +25,8 @@ jobs:
           python-version: '3.12'
       - name: Validate catalog contract
         run: python scripts/validate_catalog.py
+      - name: Validate contact and catalog behavior
+        run: node scripts/test_ui_contract.cjs
 
   deploy:
     if: github.event_name != 'pull_request'

@@ -23,7 +23,7 @@
   }
 
   const loadContactHub = () => {
-    if (!selfScript || document.querySelector('script[data-sales-contact-hub]')) return;
+    if (!selfScript || document.querySelector('script[data-sales-contact-hub],script[src$="/contact-hub.js"]')) return;
     const contact = document.createElement('script');
     contact.src = new URL('contact-hub.js', selfScript.src).href;
     contact.dataset.salesContactHub = '1';
