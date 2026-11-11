@@ -267,14 +267,14 @@
     `;
     document.head.appendChild(style);
 
-    const offerActions = document.querySelector('#offer .actions');
+    const offerActions = document.querySelector('#price .actions');
     if (offerActions) {
       const guard = document.createElement('div');
       guard.className = 'wab-conversion-guard';
       guard.dataset.wabConversionGuard = '1';
       guard.innerHTML = `
-        <h3>Stripeへ進む前の最終チェック</h3>
-        <p><strong>WebAI Bridge本体は ¥98,000 の1回払い。</strong> 3本以上のAIを継続してWeb販売したい方向けです。1本だけなら、まず35,000円の限定代行の方が安く始められます。</p>
+        <h3>購入前に確認すること</h3>
+        <p><strong>WebAI Bridge本体は ¥98,000 の1回払い。</strong> 提供版、納品物、利用期間、ホスティング費用、納期、サポート・キャンセル条件を事前に確認します。</p>
         <div class="wab-conversion-grid">
           <div class="wab-conversion-cell"><b>購入後</b><span>Stripeに登録したメールアドレスを基準に購入確認し、導入案内へ進みます。</span></div>
           <div class="wab-conversion-cell"><b>標準構成</b><span>Linux / Ubuntu系サーバー推奨。利用者側は一般的なWebブラウザ、推論費は標準BYOK方式です。</span></div>
@@ -290,7 +290,7 @@
       if (actions && !actions.querySelector('.wab-consult-microcopy')) {
         const note = document.createElement('p');
         note.className = 'wab-consult-microcopy';
-        note.textContent = '0円相談はカード入力なし・決済なし。氏名・メール・相談内容だけで送信できます。';
+        note.textContent = '相談はメールで受け付けます。メールアプリで内容を確認し、送信してください。';
         actions.insertAdjacentElement('afterend', note);
       }
     });
@@ -298,7 +298,7 @@
     const dock = document.createElement('div');
     dock.className = 'wab-conversion-dock';
     dock.setAttribute('aria-label', '購入・相談ショートカット');
-    dock.innerHTML = `<a class="consult" href="${CONSULT_URL}">カード不要<br>0円相談</a><a class="purchase" href="${PURCHASE_URL}">Stripeで購入<br>¥98,000</a>`;
+    dock.innerHTML = `<a class="consult" href="mailto:yamauchi.rts.office@gmail.com" data-contact-hub-open="info">メールで<br>購入前相談</a><a class="purchase" href="#price">提供条件を見る<br>¥98,000</a>`;
     document.body.appendChild(dock);
 
     const toggleDock = () => {

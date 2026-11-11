@@ -4,7 +4,7 @@
   const script = document.currentScript;
   if (!script) return;
 
-  if (!document.querySelector('script[data-sales-contact-hub]')) {
+  if (!document.querySelector('script[data-sales-contact-hub],script[src$="/contact-hub.js"]')) {
     const contact = document.createElement('script');
     contact.src = new URL('contact-hub.js', script.src).href;
     contact.defer = true;

@@ -4,7 +4,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 products = json.loads((ROOT / 'data/products.json').read_text(encoding='utf-8'))
-allowed_status = {'draft','for_sale','paused','sold_out','archived'}
+allowed_status = {'draft','for_sale','consultation_only','consultation_required','paused','sold_out','archived'}
 allowed_partner = {'closed','open','limited','invite_only','paused'}
 allowed_commission_type = {'success_fee'}
 allowed_commission_basis = {'confirmed_receipt'}
