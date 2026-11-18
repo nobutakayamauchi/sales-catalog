@@ -62,6 +62,12 @@
     return '';
   }
 
+  function ctaKind(link) {
+    // Email consultation opens the contact hub; it is not a Stripe checkout.
+    if (link.dataset.contactHubOpen === 'info' && link.protocol === 'mailto:') return 'consult';
+    return checkoutKind(link.href);
+  }
+
   function decorateCheckoutHref(href) {
     try {
       const url = new URL(href, location.href);
@@ -227,7 +233,7 @@
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         const link = entry.target;
-        const kind = checkoutKind(link.href);
+        const kind = ctaKind(link);
         if (!kind || seen.has(kind)) continue;
         seen.add(kind);
         sendPageOnce(`${kind}_cta_view`);
@@ -236,7 +242,7 @@
     }, { threshold: 0.6 });
 
     document.querySelectorAll('a[href]').forEach(link => {
-      if (checkoutKind(link.href)) observer.observe(link);
+      if (ctaKind(link)) observer.observe(link);
     });
   }
 
@@ -312,19 +318,14 @@
   document.addEventListener('click', event => {
     const link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
-    const kind = checkoutKind(link.href);
+    const kind = ctaKind(link);
     if (!kind) return;
+    send(`${kind}_click`);
+    // Preserve checkout attribution and intent only for the existing Stripe URLs.
+    if (!checkoutKind(link.href)) return;
     link.href = decorateCheckoutHref(link.href);
-    if (kind === 'consult') {
-      setCheckoutIntent('consult');
-      send('consult_click');
-      send('consult_checkout_start');
-    }
-    if (kind === 'purchase') {
-      setCheckoutIntent('purchase');
-      send('purchase_click');
-      send('purchase_checkout_start');
-    }
+    setCheckoutIntent(kind);
+    send(`${kind}_checkout_start`);
   }, { capture: true });
 
   if (document.readyState === 'loading') {
