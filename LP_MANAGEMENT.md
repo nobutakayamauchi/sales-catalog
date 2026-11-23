@@ -105,3 +105,9 @@ Treat the LP bundle and `data/products.json` as one managed sales artifact, not 
 - `consultation_only`: development-stage inquiry; a reference price is not a released-product offer.
 - Keep catalog labels, all LPs, partner summaries, and dynamically inserted mobile CTAs aligned.
 - Do not restore direct checkout until the actual deliverable, applicable commercial disclosures, and purchase conditions have been verified. Do not reuse the Brain draft as Stripe terms.
+
+## Product-specific commercial disclosures
+
+Use the existing [RS AI disclosure page](https://nobutakayamauchi.github.io/RTS/bridgepatch/tokusho.html) for catalog products. Each sales page links from its price or inquiry section to the matching `#<id>` from `data/products.json`. Each disclosure section links back to that product's `sales_url`.
+
+When adding a product or changing its offer, review its sales page, catalog entry and applicable payment link together. Update the corresponding disclosure section with the verified price, delivery, fees and cancellation terms for that offer. Keep estimates, planned prices and inquiry-only offers labeled as such. Publish and check the disclosure section before publishing the link to it. Test both directions with the public URLs.
