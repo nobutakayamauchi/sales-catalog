@@ -32,7 +32,7 @@ See [`LP_MANAGEMENT.md`](LP_MANAGEMENT.md) for source hierarchy, cross-file sync
 - Sales Distribution Network (SDN) — consultation only, price by inquiry. V1 development targets a single-product referral/settlement flow; real commercial-chain acceptance remains open.
 - AI CM Render — ¥19,800 initial price, planned future price ¥29,800. Still-image pan/zoom, transitions, subtitles, BGM/SE and 15-second vertical MP4 delivery. Materials and commercial terms must be confirmed before purchase.
 
-Catalog statuses: `for_sale`, `consultation_required`, and `consultation_only` are displayed with distinct labels. Direct payment CTAs for WebAI Bridge, Invoice Payment Ops, and AI CM Render currently lead to email consultation. Existing Stripe payment-link settings have not been changed; product-specific disclosures and fulfillment terms must be confirmed before direct checkout is restored.
+Catalog statuses: `for_sale`, `consultation_required`, and `consultation_only` are displayed with distinct labels. Direct payment CTAs for WebAI Bridge, Invoice Payment Ops, and AI CM Render currently lead to email consultation. The three existing paid Stripe links were deactivated on 2026-11-23. Once the applicable disclosures and fulfillment terms are confirmed, the same links can be reactivated without changing their URLs.
 
 Product and partner metadata live in `data/products.json`. Commission becomes eligible after confirmed receipt; unconfirmed, refunded, or charged-back sales do not become confirmed commission.
 
